@@ -1,0 +1,13 @@
+input,algorithm,seconds
+Random fares,Bubble sort,3.378526669999985
+Random fares,Insertion sort,1.5178567579999935
+Random fares,Quick sort,0.008208545999991657
+Random fares,Merge sort,0.01561447900002122
+Passenger counts (7 distinct values),Bubble sort,2.6164206779999404
+Passenger counts (7 distinct values),Insertion sort,0.6059614490000058
+Passenger counts (7 distinct values),Quick sort,0.0009906589999673088
+Passenger counts (7 distinct values),Merge sort,0.011779071999967528
+Already sorted (descending),Bubble sort,0.0004745460000776802
+Already sorted (descending),Insertion sort,0.0006529560000672063
+Already sorted (descending),Quick sort,0.004980451999927027
+Already sorted (descending),Merge sort,0.0087943629999927
