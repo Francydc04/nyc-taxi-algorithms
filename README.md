@@ -2,7 +2,7 @@
 
 **Research question:** How closely do theoretical complexity classes predict real runtimes, and does the shape of real data change which algorithm wins?
 
-**Data:** 100,000 NYC yellow-taxi trips (2022), with 5,000- and 30,000-trip subsets · **Methods:** six sorting algorithms and DFS/BFS implemented from scratch, median-of-runs benchmarking, NetworkX validation
+**Completed:** May 2024 · **Data:** 100,000 NYC yellow-taxi trips (2022), with 5,000- and 30,000-trip subsets · **Methods:** six sorting algorithms and DFS/BFS implemented from scratch, median-of-runs benchmarking, NetworkX validation
 
 ![Runtime of six sorting algorithms vs input size](images/runtime_vs_size.png)
 
