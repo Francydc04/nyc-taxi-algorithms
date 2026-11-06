@@ -1,10 +1,12 @@
-# How much does algorithmic complexity matter on real data?
+# Empirical Complexity of Sorting and Graph Search Algorithms on NYC Taxi Trip Data
 
-**Six sorting algorithms and three graph searches, written from scratch and benchmarked on 100,000 NYC taxi trips.**
+**Research question:** How closely do theoretical complexity classes predict real runtimes, and does the shape of real data change which algorithm wins?
+
+**Data:** 100,000 NYC yellow-taxi trips (2022), with 5,000- and 30,000-trip subsets · **Methods:** six sorting algorithms and DFS/BFS implemented from scratch, median-of-runs benchmarking, NetworkX validation
 
 ![Runtime of six sorting algorithms vs input size](images/runtime_vs_size.png)
 
-> **TL;DR**
+> **Key findings**
 > - At 20,000 trips, bubble sort takes **15 seconds**; quick sort takes **0.017**. Extrapolated to the full 100,000 trips, bubble sort would need about **6 minutes**, quick sort **0.1 seconds**.
 > - Big-O isn't the whole story: on **already-sorted** input, bubble and insertion sort beat every O(n log n) algorithm, and quick sort runs **8× faster** on data with few distinct values.
 > - In the trip network, zones that look **isolated in a 5,000-trip sample disappear at 100,000 trips**: every zone turns out to be connected. Small samples can invent structure.
@@ -28,7 +30,7 @@ Raw trip data needs checking before use. Out of 100,000 records:
 
 After cleaning, the typical trip carries 1.4 passengers, costs **$21.72** in total (fare $14.88, tip $2.72) and averages **19 km/h** door to door. JFK Airport alone accounts for 4,709 pickups, nearly 5% of the sample.
 
-## Sorting: theory vs stopwatch
+## Sorting: theoretical vs measured runtime
 
 The six algorithms in `src/sorting.py` (bubble, selection, insertion, merge, quick, heap) sort trip totals at sizes from 500 to 99,000. Each timing is the median of several runs, and every algorithm is checked against Python's `sorted()` in `tests/`.
 
@@ -51,7 +53,7 @@ Doubling the input from 10,000 to 20,000 multiplies bubble sort's runtime by abo
 
 Bubble sort with an early exit and insertion sort run in linear time on sorted input. Quick sort's three-way split groups equal values in one pass, so data with few distinct values is close to its best case.
 
-## The trip network
+## Connectivity of the trip network
 
 Each taxi zone is a node, and each pair of zones with at least one trip between them is an edge weighted by the number of trips. `src/graph.py` finds connected components with its own DFS and BFS, both checked against NetworkX.
 
@@ -73,7 +75,7 @@ The busiest route by far runs between the two halves of the Upper East Side (1,2
 - Quadratic algorithms were stopped at 20,000 trips. The 100,000-trip figures for them are extrapolations.
 - The 100,000 trips are a sample of 2022, so route rankings are estimates, not the full-year picture.
 
-## Run it yourself
+## Reproducibility
 
 ```bash
 pip install -r requirements.txt
